@@ -11,5 +11,23 @@ public class IfElse {
     }
 
 //    if (x) {}
+
+    x = -10;
+//    if (x > 5) {
+//      System.out.println("not tiny");
+//    } else {
+//      if (x > -5) {
+//        System.out.println("near to zero");
+//      } else {
+//        System.out.println("really small (negative)");
+//      }
+//    }
+    if (x > 5) {
+      System.out.println("not tiny");
+    } else if (x > -5) {
+      System.out.println("near to zero");
+    } else {
+      System.out.println("really small (negative)");
+    }
   }
 }

@@ -1,6 +1,10 @@
-package passbyvalue;
+package functions;
 
 public class Example1 {
+  // Java does not allow "named" argument passing
+  // Neither does it have "default values"
+  // but can often fake defaults using overloading
+
   // real name of method is
   // package.class.name.arg_type.arg_type...
   // passbyvalue.Example1.addOne.int
