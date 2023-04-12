@@ -1,30 +1,39 @@
 package doingio;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class Example {
   public static void main(String[] args) throws IOException {
-    /*
-    Modify:
-    prompt the user for a filename
-    if the file exists, print its contents
-    if not... go back for another filename
-     */
+/*
+Modify:
+prompt the user for a filename
+if the file exists, print its contents
+if not... go back for another filename
+ */
     BufferedReader keyboard = new BufferedReader(
         new InputStreamReader(System.in));
     // can now read lines from the keyboard
 
-    FileReader fr = new FileReader("data.dat");
-    BufferedReader input = new BufferedReader(fr);
-    String line;
+    boolean success = false;
+    String filename = "Unset";
+    while (! success) { // "repeat until successful"
+      try {
+        System.out.print("Enter filename: ");
+        filename = keyboard.readLine();
 
-    while ((line = input.readLine()) != null) {
-      System.out.println(">> " + line);
+        FileReader fr = new FileReader(filename);
+        BufferedReader input = new BufferedReader(fr);
+        String line;
+
+        while ((line = input.readLine()) != null) {
+          System.out.println(">> " + line);
+        }
+        System.out.println("Finished");
+        success = true;
+      } catch (FileNotFoundException fnfe) {
+        System.out.println("oops,"
+            + filename + " didn't open, please give another name");
+      }
     }
-    System.out.println("Finished");
-
   }
 }
