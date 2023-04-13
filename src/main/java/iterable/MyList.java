@@ -10,27 +10,37 @@ public class MyList<E> implements Iterable<E> {
     data[count++] = e; // what about overflow!!!
   }
 
-  private static class MyIterator<E> implements Iterator<E> {
+//  private static class MyIterator<E> implements Iterator<E> {
+  private class MyIterator/*<E>*/ implements Iterator<E> {
     private int progress = 0;
-    private MyList<E> target;
+//    private MyList<E> target;
 
-    public MyIterator(MyList<E> t) {
-      target = t;
-    }
+  public MyIterator() {}
+//  public MyIterator(MyList<E> MyList.this) {}
 
+//    public MyIterator(MyList<E> t) {
+//      target = t;
+//    }
+//
     @Override
     public boolean hasNext() {
-      return progress < target.count;
+//      return progress < /*target.*/count;
+      return progress < MyList.this.count;
     }
 
     @Override
     public E next() {
-      return target.data[progress++];
+      return /*target.*/data[progress++];
     }
   }
 
   public Iterator<E> iterator() {
-    return new MyIterator<E>(this);
+    // this as a prefix is implicit, but can be explicit..
+    return /*this.*/new MyIterator/*<E>*/(/*this*/);
+  }
+
+  public static void trySomething() {
+    new MyList().new MyIterator();
   }
 
   public String toString() {
