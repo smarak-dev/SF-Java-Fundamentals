@@ -118,5 +118,4 @@ Create a Date class (calendar date)
 - tomorrow() - which changes the date by one day
   (what if you wrap past the end of the month? or the end of the year?)
 - toString for a "tidy" text representation
-
  */
