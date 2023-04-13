@@ -12,6 +12,7 @@ public class Customer /*extends Object*/ {
   private String name;
   private long custId;
   private long creditLimit;
+//  private String address;
 
   private static long nextCustId = 1;
 
@@ -85,6 +86,18 @@ public class Customer /*extends Object*/ {
         && custId > 0 && creditLimit >= 0;
   }
 
+  public boolean equals(Object other) {
+//    if (other instanceof Customer) {
+//      Customer c1 = (Customer)other;
+//      return c1.name.equals(this.name) &&
+//          c1.custId == this.custId;
+//    }
+//    return false;
+    return other instanceof Customer c1
+        && c1.name.equals(this.name)
+        && c1.custId == this.custId;
+  }
+
 //  class OddBall {
 //    private int count;
 //  }
@@ -106,6 +119,7 @@ class UseCustomer {
 //
 //    c.creditLimit = -1000; // oops, that's not valid
   }
+
 }
 
 /*
