@@ -1,6 +1,7 @@
 package generalization;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 interface Named {
@@ -43,6 +44,10 @@ class Person implements Named/*, Serializable*/ {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public boolean askToBorrowLawnmower() {
+    return Math.random() > 0.5;
   }
 
   @Override
@@ -96,13 +101,31 @@ public class SimpleInterface {
     Pet pet1 = new Pet("Rover");
     System.out.println(pet1.getName());
 
-    List<Named> thingsITalkTo = List.of(
-        p1, p2, new Person("Albert"), pet1, new Pet("Toby")
-    );
+    List<Named> thingsITalkTo =
+        Arrays.asList(
+          p1, p2, new Person("Albert"), pet1, new Pet("Toby")
+        );
+//        List.of(
+//          p1, p2, new Person("Albert"), pet1, new Pet("Toby")
+//      );
 
     for (Named n : thingsITalkTo) {
       System.out.println("Saying hello to: " + n.getName());
       n.sayBonjourFriend();
+      // Standard "test and cast" works with all versions of Java
+//      if (n instanceof Person) { // works with parent classes and interface
+//        Person p = (Person)n;
+//        System.out.println("Can I borrow lawnmower "
+//            + p.askToBorrowLawnmower());
+//      }
+
+      // Pattern matching version of instanceof works since Java 16
+      if (n instanceof Person p && p.askToBorrowLawnmower()) {
+        System.out.println("Thanks for letting me borrow your lawnmower");
+      }
+//      else {
+//        System.out.println(p);
+//      }
     }
   }
 }
